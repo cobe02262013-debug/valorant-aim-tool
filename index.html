@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特戰英豪 練槍與客製準星工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 特戰英豪 專屬手速與準星調校工具</h1>
+
+        <!-- 第一步：參數設定區 -->
+        <div class="section">
+            <h3>第一步：選擇您的配備與偏好</h3>
+            <!-- 滑鼠 DPI 輸入欄位 -->
+            <label>您的滑鼠實體 DPI：
+                <input type="number" id="mouseDPI" value="800" min="100" max="16000" style="width: 80px;"> (例如: 800 或 1600)
+            </label>
+            <br><br>
+            
+            <!-- 🛠️ 拆分點 1：純槍械分類選單 -->
+            <label>您在遊戲中主修/愛用的槍械：
+                <select id="weaponType">
+                    <option value="rifle">⚔️ 步槍類 (暴徒 Vandal / 幻象 Phantom)</option>
+                    <option value="smg">⚡ 衝鋒槍類 (惡靈 Specter / 刺針 Stinger)</option>
+                    <option value="pistol">🔫 手槍類 (正義 Sheriff / 鬼魅 Ghost)</option>
+                    <option value="heavy">💣 重型與散彈類 (奧丁 Odin / 判官 Judge)</option>
+                </select>
+            </label>
+            <br><br>
+
+            <!-- 🛠️ 拆分點 2：純準星形狀選單 -->
+            <label>您偏好的準星基本形狀：
+                <select id="crossStyle">
+                    <option value="dotCross">● 核心實心點 (極簡首發爆頭流)</option>
+                    <option value="boxCross">▢ 精準小方塊 (大師空心鎖頭流)</option>
+                    <option value="proCross">┼ 職業十字架 (聯賽經典萬用流)</option>
+                    <option value="bigCross">✛ 防震大十字 (連續壓槍穩定流)</option>
+                    <option value="circleCross">◎ 擴散輔助圈 (散彈與大範圍近戰)</option>
+                </select>
+            </label>
+            <br><br>
+
+            <label>選擇準星顏色：
+                <select id="crossColor">
+                    <option value="green">炫綠</option>
+                    <option value="cyan">冷冽青</option>
+                    <option value="red">經典紅</option>
+                    <option value="yellow">亮眼黃</option>
+                    <option value="white">純淨白</option>
+                    <option value="pink">戀愛粉</option>
+                </select>
+            </label>
+            <br><br>
+            <label>
+                <input type="checkbox" id="isSniper"> 我平時常拿重砲/間諜狙擊槍
+            </label>
+        </div>
+
+        <!-- 第二步：反應測試區 -->
+        <div class="section">
+            <h3>第二步：點擊式 5 次反應測試</h3>
+            <p>請點擊下方方塊開始。當方塊變為<span style="color: #ff4655; font-weight: bold;">紅色</span>時請迅速點擊！(需測滿 5 次)</p>
+            <div id="react-box" class="test-box wait">點擊此處開始測試</div>
+            <p id="react-status">進度：0 / 5</p>
+        </div>
+
+        <!-- 第三步：瞄準測試區 -->
+        <div class="section">
+            <h3>第三步：極限甩槍瞄準測試 (20秒)</h3>
+            <p>點擊開始後，<span style="color: #00e5ff; font-weight: bold;">滑鼠免點擊</span>，只要用最快速度【滑過去碰到】方框內不斷瞬移的藍色圓球即可得分！</p>
+            <button id="start-aim-btn">開始瞄準測試</button>
+            <p id="aim-timer">剩餘時間：20 秒 | 目前擊中：0 個</p>
+            <div id="aim-area" class="aim-container">
+                <button id="aim-target" class="target-ball" style="display: none;"></button>
+            </div>
+        </div>
+
+        <!-- 第四步：結果與生成區 -->
+        <div class="section result-section">
+            <h3>第四步：分析您的特戰英豪數據</h3>
+            <button id="generateBtn">查看測試結果與產出準星</button>
+
+            <div id="result-display" style="display: none; margin-top: 20px;">
+                <p>平均反應時間：<span id="res-react-avg" class="highlight">0</span> ms</p>
+                <p>您的瞄準風格：<span id="res-aim-style" class="highlight">-</span></p>
+                
+                <p>建議遊戲內靈敏度：<span id="res-game-sens" class="highlight">0.000</span> (客製化 eDPI: <span id="res-edpi" class="highlight">0</span>)</p>
+                <p id="sniper-sens-wrapper" style="display: none;">建議狙擊鏡開鏡靈敏度：<span id="res-sniper" class="highlight">0.000</span></p>
+                
+                <hr>
+                
+                <h4>🎁 為您量身打造的特戰英豪準星</h4>
+                <p class="cross-title" id="cross-name">請先點擊上方按鈕</p>
+                <p class="cross-desc" id="cross-desc">-</p>
+                
+                <div class="copy-wrapper">
+                    <input type="text" id="crossCode" readonly value="" placeholder="準星代碼將顯示於此">
+                    <button id="copyBtn">複製準星代碼</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
